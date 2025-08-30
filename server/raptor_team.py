@@ -45,7 +45,7 @@ def test():
 @router.get("/players")
 def display_toronto_players(): 
     try:
-        current_season = 2024
+        current_season = 2025
         matches = commonteamroster.CommonTeamRoster(team_id=get_raptors_id(), season=season_str(current_season))
         data = matches.get_normalized_dict()
         players = data["CommonTeamRoster"]   
@@ -64,7 +64,7 @@ def display_toronto_players():
 @router.get("/players/regstats")
 def display_toronto_player_regseason_stats():
     try:
-        current_season = 2024
+        current_season = 2025
         fetch_raptors_regular_season_stats = leaguedashplayerstats.LeagueDashPlayerStats(
             season=season_str(current_season),
             season_type_all_star="Regular Season",
