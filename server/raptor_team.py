@@ -23,7 +23,7 @@ def get_raptors_id():
         matches = teams.find_teams_by_full_name("Toronto Raptors")
         return matches[0]["id"]
     except Exception as e:
-        raise HTTPException(500, f"Error getting Raptors ID: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error getting Raptors ID: {str(e)}")
     
 def season_str(start_year: int) -> str:
     # nba_api expects "YYYY-YY" (e.g., 2024 -> "2024-25")
@@ -34,7 +34,7 @@ def display_toronto_team():
     try:
         matches = teams.find_teams_by_full_name("Toronto Raptors")
     except Exception as e:
-        raise HTTPException(500, f"Error displaying toronto teams: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error displaying toronto teams: {str(e)}")
     return matches
 
 @router.get("/test")
@@ -45,26 +45,37 @@ def test():
 @router.get("/players")
 def display_toronto_players(): 
     try:
-        matches = commonteamroster.CommonTeamRoster(team_id=get_raptors_id(), season=season_str(2024))
+        current_season = 2024
+        matches = commonteamroster.CommonTeamRoster(team_id=get_raptors_id(), season=season_str(current_season))
         data = matches.get_normalized_dict()
-        players = data["CommonTeamRoster"]   # list[dict]
+        players = data["CommonTeamRoster"]   
         coaches = data["Coaches"] 
     except Exception as e:
-        raise HTTPException(f"displaying toronto players not working: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"displaying toronto players not working: {str(e)}")
     # return matches
-    return {"players": players, "coaches": coaches}
+    return {
+        "players": players,
+        "coaches": coaches,
+        "season": season_str(current_season),
+        "team_id": get_raptors_id()
+        }
 
 """ Gets toronto raptor players stats in the regular season"""
 @router.get("/players/regstats")
 def display_toronto_player_regseason_stats():
     try:
+        current_season = 2024
         fetch_raptors_regular_season_stats = leaguedashplayerstats.LeagueDashPlayerStats(
-            season=season_str(2024),
+            season=season_str(current_season),
             season_type_all_star="Regular Season",
             team_id_nullable=get_raptors_id(),
             per_mode_detailed="PerGame",
         )
         raptors_regular_season_stats = fetch_raptors_regular_season_stats.get_normalized_dict()["LeagueDashPlayerStats"]
     except Exception as e:
-        raise HTTPException(f"displaying toronto players' stats not working: {str(e)}")
-    return raptors_regular_season_stats
+        raise HTTPException(status_code=500, detail=f"displaying toronto players' stats not working: {str(e)}")
+    return {
+        "stats": raptors_regular_season_stats,
+        "season": season_str(current_season),
+        "team_id": get_raptors_id()
+    }

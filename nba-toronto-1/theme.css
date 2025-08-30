@@ -1,11 +1,18 @@
 :root {
-  --ref-primary-5: ##2d0001;
+  --ref-primary-5: #2d0001;
   --ref-primary-10: #410002;
   --ref-primary-15: #540004;
   --ref-primary-20: #690006;
   --ref-primary-25: #7d0009;
   --ref-primary-30: #93000d;
   --ref-primary-35: #a90010;
-  --ref-neutral-5: #15100f;
+  --ref-primary-40: #bc141a;
+  --ref-primary-50: #e03330;
+  --ref-primary-60: #ff544b;
+  --ref-primary-70: #ff897e;
+  --ref-primary-80: #ffb4ab;
+  --ref-primary-90: #ffdad6;
   --ref-neutral-10: #201a19;
+  --ref-neutral-20: #362f2e;
+  --ref-neutral-30: #4d4544;
 }
