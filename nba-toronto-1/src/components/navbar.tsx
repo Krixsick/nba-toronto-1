@@ -17,7 +17,7 @@ export function Navbar() {
         <div className="w-[50%] h-full flex">
           <Link to="/players">Players</Link>
           <p>Team</p>
-          <p>Standings</p>
+          <Link to="/standings">Standings</Link>
           <p>Prediction</p>
         </div>
       </div>
