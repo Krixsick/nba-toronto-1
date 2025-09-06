@@ -10,6 +10,7 @@ type TableProps = {
   away: string;
   team_name: string;
   image: string;
+  playoff_seeding: number;
 };
 
 export function Table({
@@ -22,6 +23,7 @@ export function Table({
   away,
   team_name,
   image,
+  playoff_seeding,
 }: TableProps) {
   return (
     <>
@@ -29,7 +31,9 @@ export function Table({
       <tr>
         <td>
           <div className="flex items-center gap-3">
-            <div className="divider divider-horizontal"></div>
+            <div
+              className={`divider divider-horizontal ${playoff_seeding === null ? "divider-error" : "divider-success"}`}
+            ></div>
             {position}
             <div className="avatar">
               <div className="mask mask-squircle h-12 w-12">

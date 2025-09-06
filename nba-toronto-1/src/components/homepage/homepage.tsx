@@ -16,7 +16,7 @@ function CarouselImgs() {
   return (
     <>
       {starting_players.map((starting_player) => (
-        <div className="carousel-item w-1/3 h-80 ">
+        <div className="carousel-item w-1/3 h-80 " key={starting_player}>
           <img
             src={starting_player}
             alt="Starting Players"

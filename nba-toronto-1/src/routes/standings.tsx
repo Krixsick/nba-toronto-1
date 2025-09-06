@@ -50,7 +50,7 @@ function RouteComponent() {
             {/* head */}
             <thead>
               <tr>
-                <th>Name</th>
+                <th>Team</th>
                 <th>W</th>
                 <th>L</th>
                 <th>Win %</th>
@@ -74,6 +74,7 @@ function RouteComponent() {
                       away={team.ROAD}
                       team_name={`${team.TeamCity} ${team.TeamName}`}
                       image={`https://cdn.nba.com/logos/nba/${team.TeamID}/global/L/logo.svg`}
+                      playoff_seeding={team.PlayoffSeeding}
                     ></Table>
                   ))
                 : westStandings.map((team: LeagueStandingsV3Row) => (
@@ -88,6 +89,7 @@ function RouteComponent() {
                       away={team.ROAD}
                       team_name={`${team.TeamCity} ${team.TeamName}`}
                       image={`https://cdn.nba.com/logos/nba/${team.TeamID}/global/L/logo.svg`}
+                      playoff_seeding={team.PlayoffSeeding}
                     ></Table>
                   ))}
             </tbody>
