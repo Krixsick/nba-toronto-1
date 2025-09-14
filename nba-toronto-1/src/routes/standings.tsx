@@ -44,7 +44,7 @@ function RouteComponent() {
           }}
         />
       </div>
-      <div className="w-full h-[90%] p-4">
+      <div className="w-full h-[90%] ">
         <div className="overflow-x-auto">
           <table className="table">
             {/* head */}
@@ -57,7 +57,7 @@ function RouteComponent() {
                 <th>Conf</th>
                 <th>Home</th>
                 <th>Away</th>
-                <th></th>
+                <th>Info</th>
               </tr>
             </thead>
             <tbody>

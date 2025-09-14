@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
-"""
-Simple Toronto Raptors Season Predictor using real NBA data
-Fixed to work with the actual CSV structure
-"""
+
 
 import numpy as np
 import pandas as pd

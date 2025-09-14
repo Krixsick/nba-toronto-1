@@ -1,5 +1,5 @@
 import { getStandings } from "../../queries/players";
-
+import threeDots from "../../assets/Group 10.svg";
 type TableProps = {
   position: number;
   win: number;
@@ -52,7 +52,9 @@ export function Table({
         <td>{home}</td>
         <td>{away}</td>
         <th>
-          <button className="btn btn-ghost btn-xs">details</button>
+          <div className="btn btn-ghost btn-xs">
+            <img src={threeDots} className="w-[20px] h-[24px]" />
+          </div>
         </th>
       </tr>
     </>

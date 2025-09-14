@@ -21,7 +21,9 @@ function PlayerStat({ stat_title, stat }: PlayerStatProps) {
   return (
     <>
       {/* Stats box*/}
-      <div></div>
+      <div>
+        {stat_title} {stat}
+      </div>
       {/* this loops for every stat (3 stats)*/}
       {/* <div className="stats shadow w-full h-full">
         <div className="stat flex flex-col items-center justify-around">
