@@ -37,7 +37,7 @@ def display_toronto_team():
         raise HTTPException(status_code=500, detail=f"Error displaying toronto teams: {str(e)}")
     return matches
 
-@router.get("/test")
+@router.get("/")
 def test():
     return get_raptors_id()
 

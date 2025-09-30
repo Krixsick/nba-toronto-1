@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { type RaptorsRosterResponse } from "../types/players";
 import { type LeagueDashPlayerStats } from "../types/players";
-
+import { type LeagueStandingsV3Row } from "../types/standings";
 export const raptor_api = axios.create({
   baseURL: "http://localhost:8000",
   timeout: 10000, // 10 second timeout
@@ -30,6 +30,15 @@ async function fetchRaptorPlayerStats() {
   }
 }
 
+async function fetchStandings() {
+  try {
+    const { data } = await raptor_api.get<LeagueStandingsV3Row>("/standings");
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+
 //Query to get Raptor players
 export function getPlayers() {
   return useQuery({
@@ -42,5 +51,12 @@ export function getRaptorPlayerStats() {
   return useQuery({
     queryKey: ["raptors", "players", 2024, "stats"],
     queryFn: fetchRaptorPlayerStats,
+  });
+}
+
+export function getStandings() {
+  return useQuery({
+    queryKey: ["standings", "v3"],
+    queryFn: fetchStandings,
   });
 }

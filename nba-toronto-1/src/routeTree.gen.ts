@@ -9,9 +9,21 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as StandingsRouteImport } from './routes/standings'
+import { Route as PredictionRouteImport } from './routes/prediction'
 import { Route as PlayersRouteImport } from './routes/players'
 import { Route as IndexRouteImport } from './routes/index'
 
+const StandingsRoute = StandingsRouteImport.update({
+  id: '/standings',
+  path: '/standings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PredictionRoute = PredictionRouteImport.update({
+  id: '/prediction',
+  path: '/prediction',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PlayersRoute = PlayersRouteImport.update({
   id: '/players',
   path: '/players',
@@ -26,31 +38,53 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/players': typeof PlayersRoute
+  '/prediction': typeof PredictionRoute
+  '/standings': typeof StandingsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/players': typeof PlayersRoute
+  '/prediction': typeof PredictionRoute
+  '/standings': typeof StandingsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/players': typeof PlayersRoute
+  '/prediction': typeof PredictionRoute
+  '/standings': typeof StandingsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/players'
+  fullPaths: '/' | '/players' | '/prediction' | '/standings'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/players'
-  id: '__root__' | '/' | '/players'
+  to: '/' | '/players' | '/prediction' | '/standings'
+  id: '__root__' | '/' | '/players' | '/prediction' | '/standings'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PlayersRoute: typeof PlayersRoute
+  PredictionRoute: typeof PredictionRoute
+  StandingsRoute: typeof StandingsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/standings': {
+      id: '/standings'
+      path: '/standings'
+      fullPath: '/standings'
+      preLoaderRoute: typeof StandingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/prediction': {
+      id: '/prediction'
+      path: '/prediction'
+      fullPath: '/prediction'
+      preLoaderRoute: typeof PredictionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/players': {
       id: '/players'
       path: '/players'
@@ -71,6 +105,8 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PlayersRoute: PlayersRoute,
+  PredictionRoute: PredictionRoute,
+  StandingsRoute: StandingsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

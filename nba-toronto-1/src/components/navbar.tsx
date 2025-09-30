@@ -6,16 +6,18 @@ export function Navbar() {
     <>
       <div className="w-full h-[8vh] flex bg-[var(--ref-primary-5)] justify-between">
         <div className="w-[15%] h-full">
-          <img
-            className="w-[60px] h-[60px]"
-            src={torontoLogo}
-            alt="toronto logo"
-          />
+          <Link to="/">
+            <img
+              className="w-[60px] h-[60px]"
+              src={torontoLogo}
+              alt="toronto logo"
+            />
+          </Link>
         </div>
         <div className="w-[50%] h-full flex">
           <Link to="/players">Players</Link>
           <p>Team</p>
-          <p>Standings</p>
+          <Link to="/standings">Standings</Link>
           <p>Prediction</p>
         </div>
       </div>

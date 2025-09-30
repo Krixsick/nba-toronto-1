@@ -52,7 +52,7 @@ function RouteComponent() {
 
   return (
     <>
-      <div className="w-full h-[92vh]">
+      <div className="w-full min-h-dvh">
         {/* Players Section*/}
         <div className="w-full flex justify-start items-center h-[10%] min-h-[35px] max-h-[55px] p-4">
           <p>
